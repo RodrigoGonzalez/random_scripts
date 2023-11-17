@@ -75,7 +75,7 @@ def check_file(key, local_fdict):
     Return False if the file matches the file already present on S3
     '''
     md5_hash = local_fdict.get(key.name, (None, None))[1]
-    return not md5_hash == key.etag[1:-1]
+    return md5_hash != key.etag[1:-1]
 
 
 def md5(fname):

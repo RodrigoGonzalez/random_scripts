@@ -88,8 +88,7 @@ def predicted_value_plot(model, df, column, classification=False, discrete_col=F
         if isinstance(class_labels, dict):
             pass
         elif isinstance(class_labels, collections.Iterable):
-            class_labels = {idx: label for idx,
-                            label in enumerate(class_labels)}
+            class_labels = dict(enumerate(class_labels))
         else:
             class_labels = {}
 
@@ -302,11 +301,7 @@ def predicted_value_plot(model, df, column, classification=False, discrete_col=F
 
             # Set the color of the histogram to be distinct from any of the
             # lines
-            if len(preds.shape) == 2:
-                freq_color = cmap[1]
-            else:
-                freq_color = cmap[preds.shape[2] + 1]
-
+            freq_color = cmap[1] if len(preds.shape) == 2 else cmap[preds.shape[2] + 1]
             if num_linspace:
                 ax2.hist(df.loc[(df[column] >= mean - 1.5 * std) & \
                          (df[column] <= mean + 1.5 * std), column] \

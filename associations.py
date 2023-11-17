@@ -64,6 +64,6 @@ def bivariate_association_matrix(arr, file_path, labels=None, line_color='k'):
 if __name__ == '__main__':
     data = load_diabetes()
     X, y = data.data, data.target
-    cols = ['column' + str(i) for i in xrange(X.shape[1])]
+    cols = [f'column{str(i)}' for i in xrange(X.shape[1])]
     bivariate_association_matrix(X, file_path='corrs.png')
     bivariate_association_matrix(X, file_path='corrs_labels.png', labels=cols, line_color='b')
